@@ -1,6 +1,6 @@
 # Globals
 $prev_hash = "0" # Keeps track of previous hash
-$prev_time = 0.0 # Keeps track of previous timestamp
+$prev_time = "0.0" # Keeps track of previous timestamp
 $line_num = 0 # Keeps track of line number
 $addresses = Hash.new() # Hash of {addresses => billcoins}
 
@@ -22,7 +22,11 @@ end
 
 # Checks that timestamp of current block is not greater than or equal to the block timestamp 
 def check_time (time)
-    if ($prev_time >= time)
+    prev_time_sec = $prev_time.split(".")[0].to_i
+    prev_time_nano = $prev_time.split(".")[1].to_i
+    curr_time_sec = time.split(".")[0].to_i
+    curr_time_nano = time.split(".")[1].to_i
+    if (prev_time_sec >= curr_time_sec && prev_time_nano >= curr_time_nano)
         abort("Line #{$line_num}: Previous timestamp #{$prev_time} >= new timestamp #{time}\nBLOCKCHAIN INVALID")
     end
     $prev_time = time
@@ -105,7 +109,7 @@ def read (file)
         block_num = line[0] # Block number
         prev_hash = line[1] # Hash of previous block
         transactions = line[2] # Sequence of transactions
-        timestamp = line[3].to_f # Timestamp
+        timestamp = line[3] # Timestamp
         hash = line[4] # Hash of the first four elements
         found_hash = calc_hash(line)
 
