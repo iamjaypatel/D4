@@ -5,7 +5,7 @@
     - Jay Patel (jjp107)
     - Kevin Wang
 
-  - Initial Testing
+Initial Testing
 
 | File Name               | Real     | User     | Sys      |
 |-------------------------|----------|----------|----------|
