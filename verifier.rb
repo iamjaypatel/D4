@@ -83,9 +83,7 @@ def calc_hash(line, calculations)
   string_to_hash = "#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}".unpack('U*')
   sum = 0
   string_to_hash.each do |x|
-    if calculations[x].nil?
-      calculations[x] = ((x**3000) + (x**x) - (3**x)) * (7**x)
-    end
+    calculations[x] = ((x**3000) + (x**x) - (3**x)) * (7**x) if calculations[x].nil?
     sum += calculations[x]
   end
   result = (sum % 65_536).to_s(16)
@@ -95,7 +93,8 @@ end
 def check_hash(found_hash, line, line_num)
   return if found_hash == line[4].delete("\n")
 
-  puts "Line #{line_num}: String '#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}' hash set to #{line[4]}, should be #{found_hash}"
+  puts "Line #{line_num}: String '#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}'
+    hash set to #{line[4]}, should be #{found_hash}"
   puts 'BLOCKCHAIN INVALID'
   exit 1
 end
