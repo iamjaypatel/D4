@@ -5,8 +5,7 @@
     - Jay Patel (jjp107)
     - Kevin Wang
 
-  - Flamegraph Help https://github.com/SamSaffron/flamegraph
-Initial Testing
+  - Initial Testing
 
 | File Name               | Real     | User     | Sys      |
 |-------------------------|----------|----------|----------|
@@ -19,3 +18,6 @@ Initial Testing
 | bad_timestamp.txt       | 0m0.191a | 0m0.154s | 0m0.030s |
 | invalid_format.txt      | 0m0.128s | 0m0.100s | 0m0.024s |
 | invalid_transcation.txt | 0m0.186s | 0m0.150s | 0m0.028s |
+
+
+  - Flamegraph Help https://github.com/SamSaffron/flamegraph
