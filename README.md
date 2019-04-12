@@ -6,7 +6,8 @@
     - Kevin Wang
 
   - Flamegraph Help https://github.com/SamSaffron/flamegraph
-  - Initial Testing
+Initial Testing
+
 | File Name               | Real     | User     | Sys      |
 |-------------------------|----------|----------|----------|
 | 100.txt                 | 0m0.636s | 0m0.582  | 0m0.040s |
