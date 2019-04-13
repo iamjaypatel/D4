@@ -4,7 +4,8 @@ class D4
   def check_num(block_num, line_num)
     return if block_num.to_i == line_num
 
-    abort("Line #{line_num}: Invalid block number #{block_num}, should be #{line_num}\nBLOCKCHAIN INVALID")
+    puts("Line #{line_num}: Invalid block number #{block_num}, should be #{line_num}\nBLOCKCHAIN INVALID")
+    exit 1
   end
 
   # Checks if stored previous hash matches the previous hash in the block
@@ -22,7 +23,8 @@ class D4
     curr_time_sec = time.split('.')[0].to_i
     curr_time_nano = time.split('.')[1].to_i
     if prev_time_sec >= curr_time_sec && prev_time_nano >= curr_time_nano
-      abort("Line #{line_num}: Previous timestamp #{prev_time} >= new timestamp #{time}\nBLOCKCHAIN INVALID")
+      puts("Line #{line_num}: Previous timestamp #{prev_time} >= new timestamp #{time}\nBLOCKCHAIN INVALID")
+      exit 1
     end
     time
   end
@@ -30,16 +32,19 @@ class D4
   # Checks that addresses are valid
   def check_addresses(addresses, line_num)
     if addresses[0].length > 6 || addresses[0].match?(/[A-Za-z]/) && addresses[0] != 'SYSTEM'
-      abort("Line #{line_num}: Invalid address #{addresses[0]}\nBLOCKCHAIN INVALID")
+      puts("Line #{line_num}: Invalid address #{addresses[0]}\nBLOCKCHAIN INVALID")
+      exit 1
     elsif addresses[1].length > 6 || addresses[1].match?(/[A-Za-z]/)
-      abort("Line #{line_num}: Invalid address #{addresses[1]}\nBLOCKCHAIN INVALID")
+      puts("Line #{line_num}: Invalid address #{addresses[1]}\nBLOCKCHAIN INVALID")
+      exit 1
     end
   end
 
   def check_format(transactions, line_num)
     return if transactions.include?('>')
 
-    abort("Line #{line_num}: Could not parse transactions list '#{transactions}'\nBLOCKCHAIN INVALID")
+    puts("Line #{line_num}: Could not parse transactions list '#{transactions}'\nBLOCKCHAIN INVALID")
+    exit 1
   end
 
   # Obtains the billcoins and addresses involved in each transaction, then executes each transaction
