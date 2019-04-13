@@ -1,4 +1,4 @@
-require_relative 'd4'
+require_relative 'verifier_helper'
 require 'flamegraph'
 
 Flamegraph.generate('./initial.html') do

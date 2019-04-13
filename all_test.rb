@@ -1,4 +1,4 @@
 require 'simplecov'
-Simplecov.start
+SimpleCov.start
 
-require_relative 'verifier_test'
+require_relative 'verifier_helper_test'
