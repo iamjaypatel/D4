@@ -11,7 +11,8 @@ class D4
   # Checks if stored previous hash matches the previous hash in the block
   def check_prev_hash(prev_hash, block_prev_hash, hash, line_num)
     if prev_hash != block_prev_hash
-      abort("Line #{line_num}: Previous hash was #{block_prev_hash}, should be #{prev_hash}\nBLOCKCHAIN INVALID")
+      puts("Line #{line_num}: Previous hash was #{block_prev_hash}, should be #{prev_hash}\nBLOCKCHAIN INVALID")
+      exit 1
     end
     hash.delete("\n")
   end
