@@ -1,4 +1,4 @@
-require_relative 'D4'
+require_relative 'd4'
 require 'flamegraph'
 
 Flamegraph.generate('./initial.html') do

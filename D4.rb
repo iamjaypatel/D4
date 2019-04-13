@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# Class D4, Contains all the helper methods for verifier.rb
 class D4
   # Checks if block number is valid
   def check_num(block_num, line_num)
@@ -121,10 +120,12 @@ class D4
       prev_hash = check_prev_hash(prev_hash, block_prev_hash, hash, line_num)
       prev_time = check_time(timestamp, prev_time, line_num)
 
-      uniq_addresses = process_transactions(transactions, line_num, addresses).uniq # Get unique addresses w/ transactions
+      # Get unique addresses w/ transactions
+      uniq_addresses = process_transactions(transactions, line_num, addresses).uniq
       uniq_addresses.each do |address|
         if address != 'SYSTEM' && (addresses[address]).negative? # If an address has negative billcoins
-          puts "Line #{line_num}: Invalid block, address #{address} has #{addresses[address]} billcoins!"
+          puts "Line #{line_num}: Invalid block,
+            address #{address} has #{addresses[address]} billcoins!"
           puts 'BLOCKCHAIN INVALID'
           exit 1
         end
