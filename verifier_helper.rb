@@ -62,7 +62,12 @@ class D4
   def process_transactions(transactions, line_num, addresses)
     block_addresses = []
     transactions.split(':').each do |transaction|
-      billcoins = transaction[/(?<=\()\w+(?=\)$)/].to_i # Regex to obtain billcoins traded in parentheses
+      billcoins = transaction[/(?<=\().+(?=\)$)/] # Regex to obtain billcoins traded in parentheses
+      if billcoins.nil? || billcoins.match?(/[^0-9]/) # Ensures that only positive integers are a valid amt
+        puts("Line #{line_num}: Invalid amount of billcoins: (#{billcoins})\nBLOCKCHAIN INVALID")
+        exit 1
+      end
+      billcoins = billcoins.to_i
       address_pair = transaction.gsub(/\(.*?\)/, '').split('>') # Obtain pair of addresses involved in transaction
       check_addresses(address_pair, line_num)
       block_addresses.push(address_pair[0], address_pair[1])
@@ -140,17 +145,18 @@ class D4
       transactions = line[2] # Sequence of transactions
       timestamp = line[3] # Timestamp
       hash = line[4] # Hash of the first four elements
-      found_hash = calc_hash(line, calculations)
-
-      check_num(block_num, line_num)
-      check_transaction_format(transactions, line_num)
-      check_hash(found_hash, line, line_num)
-      prev_hash = check_prev_hash(prev_hash, block_prev_hash, hash, line_num)
-      prev_time = check_time(timestamp, prev_time, line_num)
 
       # Get unique addresses w/ transactions
       uniq_addresses = process_transactions(transactions, line_num, addresses)
+
+      check_num(block_num, line_num)
+      check_transaction_format(transactions, line_num)
+      found_hash = calc_hash(line, calculations)
+      check_hash(found_hash, line, line_num)
+      prev_hash = check_prev_hash(prev_hash, block_prev_hash, hash, line_num)
+      prev_time = check_time(timestamp, prev_time, line_num)
       check_negative_balance(uniq_addresses, addresses, line_num)
+
       line_num += 1
     end
     addresses = addresses.delete_if { |_, billcoins| billcoins.zero? } # Remove all addresses with 0 billcoin

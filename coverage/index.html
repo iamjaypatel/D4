@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-14T00:41:12-04:00">2019-04-14T00:41:12-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-14T15:51:02-04:00">2019-04-14T15:51:02-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.98
+         1.99
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>2</b> files in total.
-    <b>226</b> relevant lines. 
-    <span class="green"><b>226</b> lines covered</span> and
+    <b>246</b> relevant lines. 
+    <span class="green"><b>246</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -53,19 +53,19 @@
       <tr>
         <td class="strong"><a href="#d2e9d12a88b6d3b21eb1930d515e3966398f9843" class="src_link" title="verifier_helper.rb">verifier_helper.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>161</td>
-        <td>98</td>
-        <td>98</td>
+        <td>167</td>
+        <td>102</td>
+        <td>102</td>
         <td>0</td>
-        <td>3.0</td>
+        <td>3.1</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#fa7e416b621eb7ee8f4353bad73a3d27351b3183" class="src_link" title="verifier_helper_test.rb">verifier_helper_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>222</td>
-        <td>128</td>
-        <td>128</td>
+        <td>248</td>
+        <td>144</td>
+        <td>144</td>
         <td>0</td>
         <td>1.2</td>
       </tr>
@@ -91,8 +91,8 @@
     <h3>verifier_helper.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>98</b> relevant lines. 
-      <span class="green"><b>98</b> lines covered</span> and
+      <b>102</b> relevant lines. 
+      <span class="green"><b>102</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -472,298 +472,298 @@
           <code class="ruby">  def process_transactions(transactions, line_num, addresses)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="63">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="63">
+          <span class="hits">4</span>
           
           <code class="ruby">    block_addresses = []</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="64">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="64">
+          <span class="hits">4</span>
           
           <code class="ruby">    transactions.split(&#39;:&#39;).each do |transaction|</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="65">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="8" data-linenumber="65">
+          <span class="hits">8</span>
           
-          <code class="ruby">      billcoins = transaction[/(?&lt;=\()\w+(?=\)$)/].to_i # Regex to obtain billcoins traded in parentheses</code>
+          <code class="ruby">      billcoins = transaction[/(?&lt;=\().+(?=\)$)/] # Regex to obtain billcoins traded in parentheses</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="66">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="8" data-linenumber="66">
+          <span class="hits">8</span>
           
-          <code class="ruby">      address_pair = transaction.gsub(/\(.*?\)/, &#39;&#39;).split(&#39;&gt;&#39;) # Obtain pair of addresses involved in transaction</code>
+          <code class="ruby">      if billcoins.nil? || billcoins.match?(/[^0-9]/) # Ensures that only positive integers are a valid amt</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="67">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="2" data-linenumber="67">
+          <span class="hits">2</span>
           
-          <code class="ruby">      check_addresses(address_pair, line_num)</code>
+          <code class="ruby">        puts(&quot;Line #{line_num}: Invalid amount of billcoins: (#{billcoins})\nBLOCKCHAIN INVALID&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="68">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="2" data-linenumber="68">
+          <span class="hits">2</span>
           
-          <code class="ruby">      block_addresses.push(address_pair[0], address_pair[1])</code>
+          <code class="ruby">        exit 1</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="69">
-          <span class="hits">6</span>
+        <li class="never" data-hits="" data-linenumber="69">
           
-          <code class="ruby">      withdraw(billcoins, address_pair[0], addresses) if address_pair[0] != &#39;SYSTEM&#39;</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="covered" data-hits="6" data-linenumber="70">
           <span class="hits">6</span>
           
+          <code class="ruby">      billcoins = billcoins.to_i</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="71">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      address_pair = transaction.gsub(/\(.*?\)/, &#39;&#39;).split(&#39;&gt;&#39;) # Obtain pair of addresses involved in transaction</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="72">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      check_addresses(address_pair, line_num)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="73">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      block_addresses.push(address_pair[0], address_pair[1])</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="74">
+          <span class="hits">6</span>
+          
+          <code class="ruby">      withdraw(billcoins, address_pair[0], addresses) if address_pair[0] != &#39;SYSTEM&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="75">
+          <span class="hits">6</span>
+          
           <code class="ruby">      add(billcoins, address_pair[1], addresses)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="76">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="72">
+        <li class="covered" data-hits="2" data-linenumber="77">
           <span class="hits">2</span>
           
           <code class="ruby">    block_addresses.uniq</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="73">
+        <li class="never" data-hits="" data-linenumber="78">
           
           
           <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="74">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="75">
-          
-          
-          <code class="ruby">  # Subtracts billcoins from the sender</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="76">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def withdraw(billcoins, sender, addresses)</code>
-        </li>
-      
-        <li class="covered" data-hits="6" data-linenumber="77">
-          <span class="hits">6</span>
-          
-          <code class="ruby">    if addresses[sender].nil?</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="78">
-          <span class="hits">2</span>
-          
-          <code class="ruby">      addresses[sender] = -billcoins</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="79">
           
           
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="covered" data-hits="4" data-linenumber="80">
-          <span class="hits">4</span>
-          
-          <code class="ruby">      addresses[sender] -= billcoins</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="81">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="82">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="83">
-          
-          
           <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
+          <code class="ruby">  # Subtracts billcoins from the sender</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="81">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def withdraw(billcoins, sender, addresses)</code>
+        </li>
+      
+        <li class="covered" data-hits="6" data-linenumber="82">
+          <span class="hits">6</span>
+          
+          <code class="ruby">    if addresses[sender].nil?</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="83">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      addresses[sender] = -billcoins</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="84">
           
           
-          <code class="ruby">  # Adds billcoins to the receiver</code>
+          <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="85">
+          <span class="hits">4</span>
           
-          <code class="ruby">  def add(billcoins, receiver, addresses)</code>
+          <code class="ruby">      addresses[sender] -= billcoins</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="86">
-          <span class="hits">8</span>
+        <li class="never" data-hits="" data-linenumber="86">
           
-          <code class="ruby">    if addresses[receiver].nil?</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="87">
-          <span class="hits">7</span>
+        <li class="never" data-hits="" data-linenumber="87">
           
-          <code class="ruby">      addresses[receiver] = billcoins</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">    else</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="89">
+        <li class="never" data-hits="" data-linenumber="89">
+          
+          
+          <code class="ruby">  # Adds billcoins to the receiver</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="90">
           <span class="hits">1</span>
           
-          <code class="ruby">      addresses[receiver] += billcoins</code>
+          <code class="ruby">  def add(billcoins, receiver, addresses)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="covered" data-hits="8" data-linenumber="91">
+          <span class="hits">8</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">    if addresses[receiver].nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="91">
+        <li class="covered" data-hits="7" data-linenumber="92">
+          <span class="hits">7</span>
           
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="92">
-          
-          
-          <code class="ruby"></code>
+          <code class="ruby">      addresses[receiver] = billcoins</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="93">
           
           
-          <code class="ruby">  # Calculates the hash for the current block</code>
+          <code class="ruby">    else</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
-          <code class="ruby">  def calc_hash(line, calculations)</code>
+          <code class="ruby">      addresses[receiver] += billcoins</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="95">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    string_to_hash = &quot;#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}&quot;.unpack(&#39;U*&#39;)</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="96">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    sum = 0</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="97">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    string_to_hash.each do |x|</code>
-        </li>
-      
-        <li class="covered" data-hits="50" data-linenumber="98">
-          <span class="hits">50</span>
-          
-          <code class="ruby">      calculations[x] = ((x**3000) + (x**x) - (3**x)) * (7**x) if calculations[x].nil?</code>
-        </li>
-      
-        <li class="covered" data-hits="50" data-linenumber="99">
-          <span class="hits">50</span>
-          
-          <code class="ruby">      sum += calculations[x]</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="100">
+        <li class="never" data-hits="" data-linenumber="95">
           
           
           <code class="ruby">    end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="96">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="97">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="98">
+          
+          
+          <code class="ruby">  # Calculates the hash for the current block</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="99">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def calc_hash(line, calculations)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="100">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    string_to_hash = &quot;#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}&quot;.unpack(&#39;U*&#39;)</code>
+        </li>
+      
         <li class="covered" data-hits="2" data-linenumber="101">
           <span class="hits">2</span>
           
-          <code class="ruby">    result = (sum % 65_536).to_s(16)</code>
+          <code class="ruby">    sum = 0</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="102">
           <span class="hits">2</span>
           
-          <code class="ruby">    result</code>
+          <code class="ruby">    string_to_hash.each do |x|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="103">
+        <li class="covered" data-hits="50" data-linenumber="103">
+          <span class="hits">50</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">      calculations[x] = ((x**3000) + (x**x) - (3**x)) * (7**x) if calculations[x].nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="104">
+        <li class="covered" data-hits="50" data-linenumber="104">
+          <span class="hits">50</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      sum += calculations[x]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="105">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="105">
           
-          <code class="ruby">  def check_hash(found_hash, line, line_num)</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="106">
           <span class="hits">2</span>
           
-          <code class="ruby">    return if found_hash == line[4].delete(&quot;\n&quot;)</code>
+          <code class="ruby">    result = (sum % 65_536).to_s(16)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="107">
+        <li class="covered" data-hits="2" data-linenumber="107">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    result</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="108">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="108">
           
-          <code class="ruby">    puts &quot;Line #{line_num}: String &#39;#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}&#39;</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="109">
           
           
-          <code class="ruby">      hash set to #{line[4]}, should be #{found_hash}\nBLOCKCHAIN INVALID&quot;</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="110">
           <span class="hits">1</span>
           
-          <code class="ruby">    exit 1</code>
+          <code class="ruby">  def check_hash(found_hash, line, line_num)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="111">
+        <li class="covered" data-hits="2" data-linenumber="111">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    return if found_hash == line[4].delete(&quot;\n&quot;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="112">
@@ -775,292 +775,328 @@
         <li class="covered" data-hits="1" data-linenumber="113">
           <span class="hits">1</span>
           
-          <code class="ruby">  def check_negative_balance(uniq_addresses, addresses, line_num)</code>
+          <code class="ruby">    puts &quot;Line #{line_num}: String &#39;#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}&#39;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="114">
-          <span class="hits">2</span>
+        <li class="never" data-hits="" data-linenumber="114">
           
-          <code class="ruby">    uniq_addresses.each do |address|</code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="115">
-          <span class="hits">3</span>
           
-          <code class="ruby">      if address != &#39;SYSTEM&#39; &amp;&amp; (addresses[address]).negative? # If an address has negative billcoins</code>
+          <code class="ruby">      hash set to #{line[4]}, should be #{found_hash}\nBLOCKCHAIN INVALID&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="116">
+        <li class="covered" data-hits="1" data-linenumber="115">
           <span class="hits">1</span>
           
-          <code class="ruby">        puts &quot;Line #{line_num}: Invalid block,</code>
+          <code class="ruby">    exit 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="116">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="117">
           
           
-          <code class="ruby">          address #{address} has #{addresses[address]} billcoins!\nBLOCKCHAIN INVALID&quot;</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="118">
           <span class="hits">1</span>
           
-          <code class="ruby">        exit 1</code>
+          <code class="ruby">  def check_negative_balance(uniq_addresses, addresses, line_num)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="119">
+        <li class="covered" data-hits="2" data-linenumber="119">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">      end</code>
+          <code class="ruby">    uniq_addresses.each do |address|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="120">
+        <li class="covered" data-hits="3" data-linenumber="120">
+          <span class="hits">3</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">      if address != &#39;SYSTEM&#39; &amp;&amp; (addresses[address]).negative? # If an address has negative billcoins</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="121">
+        <li class="covered" data-hits="1" data-linenumber="121">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">        puts &quot;Line #{line_num}: Invalid block,</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="122">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">          address #{address} has #{addresses[address]} billcoins!\nBLOCKCHAIN INVALID&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="covered" data-hits="1" data-linenumber="123">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # Reads through the file and extracts the information from each line</code>
+          <code class="ruby">        exit 1</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="124">
           
           
-          <code class="ruby">  # Checks for any invalidity, then prints out the addresses and billcoins</code>
+          <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="125">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def read(file)</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="126">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    if !File.file?(file)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="127">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      puts &#39;File not found&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="128">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      exit 1</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="129">
+        <li class="never" data-hits="" data-linenumber="125">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="130">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    line_num = 0</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="131">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    prev_hash = &#39;0&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="132">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    prev_time = &#39;0.0&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="133">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    addresses = {}</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="134">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    calculations = {}</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="135">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    File.foreach(file) do |line|</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="136">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      line = line.split(&#39;|&#39;) # Split the line using the pipes</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="137">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      check_block(line, line_num)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="138">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      block_num = line[0] # Block number</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="139">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      block_prev_hash = line[1] # Hash of previous block</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="140">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      transactions = line[2] # Sequence of transactions</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="141">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      timestamp = line[3] # Timestamp</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="142">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      hash = line[4] # Hash of the first four elements</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="143">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      found_hash = calc_hash(line, calculations)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="144">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="145">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      check_num(block_num, line_num)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="146">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      check_transaction_format(transactions, line_num)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="147">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      check_hash(found_hash, line, line_num)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="148">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      prev_hash = check_prev_hash(prev_hash, block_prev_hash, hash, line_num)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="149">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      prev_time = check_time(timestamp, prev_time, line_num)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="150">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="151">
-          
-          
-          <code class="ruby">      # Get unique addresses w/ transactions</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="152">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      uniq_addresses = process_transactions(transactions, line_num, addresses)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="153">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      check_negative_balance(uniq_addresses, addresses, line_num)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="154">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      line_num += 1</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="155">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="156">
-          <span class="hits">2</span>
-          
-          <code class="ruby">    addresses = addresses.delete_if { |_, billcoins| billcoins.zero? } # Remove all addresses with 0 billcoin</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="157">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    addresses.sort.each do |data|</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="158">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      puts &quot;#{data[0]}: #{data[1]} billcoins&quot; # Print out addresses and billcoins</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="159">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="160">
+        <li class="never" data-hits="" data-linenumber="126">
           
           
           <code class="ruby">  end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="127">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="128">
+          
+          
+          <code class="ruby">  # Reads through the file and extracts the information from each line</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
+          <code class="ruby">  # Checks for any invalidity, then prints out the addresses and billcoins</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="130">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def read(file)</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="131">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    if !File.file?(file)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="132">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts &#39;File not found&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="133">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      exit 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="134">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    line_num = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="136">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    prev_hash = &#39;0&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="137">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    prev_time = &#39;0.0&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="138">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    addresses = {}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="139">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    calculations = {}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="140">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    File.foreach(file) do |line|</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="141">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      line = line.split(&#39;|&#39;) # Split the line using the pipes</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="142">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      check_block(line, line_num)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="143">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      block_num = line[0] # Block number</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="144">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      block_prev_hash = line[1] # Hash of previous block</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="145">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      transactions = line[2] # Sequence of transactions</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="146">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      timestamp = line[3] # Timestamp</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="147">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      hash = line[4] # Hash of the first four elements</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="148">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="149">
+          
+          
+          <code class="ruby">      # Get unique addresses w/ transactions</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="150">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      uniq_addresses = process_transactions(transactions, line_num, addresses)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="151">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="152">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      check_num(block_num, line_num)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="153">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      check_transaction_format(transactions, line_num)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="154">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      found_hash = calc_hash(line, calculations)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="155">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      check_hash(found_hash, line, line_num)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="156">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      prev_hash = check_prev_hash(prev_hash, block_prev_hash, hash, line_num)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="157">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      prev_time = check_time(timestamp, prev_time, line_num)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="158">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      check_negative_balance(uniq_addresses, addresses, line_num)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="159">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="160">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      line_num += 1</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="161">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="162">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    addresses = addresses.delete_if { |_, billcoins| billcoins.zero? } # Remove all addresses with 0 billcoin</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="163">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    addresses.sort.each do |data|</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="164">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      puts &quot;#{data[0]}: #{data[1]} billcoins&quot; # Print out addresses and billcoins</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="165">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="166">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="167">
           
           
           <code class="ruby">end</code>
@@ -1076,8 +1112,8 @@
     <h3>verifier_helper_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>128</b> relevant lines. 
-      <span class="green"><b>128</b> lines covered</span> and
+      <b>144</b> relevant lines. 
+      <span class="green"><b>144</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1115,8 +1151,8 @@
           <code class="ruby">  def setup</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="6">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="24" data-linenumber="6">
+          <span class="hits">24</span>
           
           <code class="ruby">    @verify = D4.new</code>
         </li>
@@ -2330,88 +2366,244 @@
         <li class="never" data-hits="" data-linenumber="208">
           
           
-          <code class="ruby">  # Test for read method</code>
+          <code class="ruby">  # Test for transaction involving non-integer amt of billcoins</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="209">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_read_file</code>
+          <code class="ruby">  def test_non_int_trans</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="210">
-          
-          
-          <code class="ruby">    begin</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="211">
-          <span class="hits">2</span>
-          
-          <code class="ruby">      File.open(&#39;test.txt&#39;, &#39;w&#39;) { |f| f.write(&#39;0|0|SYSTEM&gt;569274(100)|1553184699.650330000|288d&#39;) }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="212">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="213">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_equal [[&#39;569274&#39;, 100]], @verify.read(&#39;test.txt&#39;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="214">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="215">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="216">
-          
-          
-          <code class="ruby">  # Test for read method- bad file</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="217">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_read_bad_file</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="218">
+        <li class="covered" data-hits="1" data-linenumber="210">
           <span class="hits">1</span>
           
           <code class="ruby">    assert_raises SystemExit do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="219">
+        <li class="covered" data-hits="1" data-linenumber="211">
           <span class="hits">1</span>
           
-          <code class="ruby">      assert_output &#39;File does not exist&#39;, @verify.read(&#39;instructions/sample_test.txt&#39;)</code>
+          <code class="ruby">      assert_output &#39;Line 0: Invalid amount of billcoins: (foobar)\nBLOCKCHAIN INVALID&#39; do </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="220">
+        <li class="covered" data-hits="1" data-linenumber="212">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        trans = &#39;281974&gt;669488(foobar):281974&gt;669488(17):281974&gt;217151(12):281974&gt;814708(5):SYSTEM&gt;933987(100)&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="213">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        line_num = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="214">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        address =  { &#39;281974&#39; =&gt; 100 }</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="215">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        output = %w[281974 669488 217151 814708 SYSTEM 933987]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="216">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        @verify.process_transactions(trans, line_num, address)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="217">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="218">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="221">
+        <li class="never" data-hits="" data-linenumber="219">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="222">
+        <li class="never" data-hits="" data-linenumber="220">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="221">
+          
+          
+          <code class="ruby">  # Test for transaction involving negative amt of billcoins</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="222">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_negative_trans</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="223">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_raises SystemExit do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="224">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_output &#39;Line 0: Invalid amount of billcoins: (-12)\nBLOCKCHAIN INVALID&#39; do </code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="225">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        trans = &#39;281974&gt;669488(-12):281974&gt;669488(17):281974&gt;217151(12):281974&gt;814708(5):SYSTEM&gt;933987(100)&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="226">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        line_num = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="227">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        address =  { &#39;281974&#39; =&gt; 100 }</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="228">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        output = %w[281974 669488 217151 814708 SYSTEM 933987]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="229">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        @verify.process_transactions(trans, line_num, address)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="230">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="231">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="232">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="233">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="234">
+          
+          
+          <code class="ruby">  # Test for read method</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="235">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_read_file</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="236">
+          
+          
+          <code class="ruby">    begin</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="237">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      File.open(&#39;test.txt&#39;, &#39;w&#39;) { |f| f.write(&#39;0|0|SYSTEM&gt;569274(100)|1553184699.650330000|288d&#39;) }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="238">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="239">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_equal [[&#39;569274&#39;, 100]], @verify.read(&#39;test.txt&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="240">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="241">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="242">
+          
+          
+          <code class="ruby">  # Test for read method- bad file</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="243">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_read_bad_file</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="244">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_raises SystemExit do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="245">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_output &#39;File does not exist&#39;, @verify.read(&#39;instructions/sample_test.txt&#39;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="246">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="247">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="248">
           
           
           <code class="ruby">end</code>

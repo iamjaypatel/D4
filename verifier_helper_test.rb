@@ -205,6 +205,32 @@ class VerifierTest < Minitest::Test
     assert_equal output, @verify.process_transactions(trans, line_num, address)
   end
 
+  # Test for transaction involving non-integer amt of billcoins
+  def test_non_int_trans
+    assert_raises SystemExit do
+      assert_output 'Line 0: Invalid amount of billcoins: (foobar)\nBLOCKCHAIN INVALID' do 
+        trans = '281974>669488(foobar):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
+        line_num = 0
+        address =  { '281974' => 100 }
+        output = %w[281974 669488 217151 814708 SYSTEM 933987]
+        @verify.process_transactions(trans, line_num, address)
+      end
+    end
+  end
+
+  # Test for transaction involving negative amt of billcoins
+  def test_negative_trans
+    assert_raises SystemExit do
+      assert_output 'Line 0: Invalid amount of billcoins: (-12)\nBLOCKCHAIN INVALID' do 
+        trans = '281974>669488(-12):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
+        line_num = 0
+        address =  { '281974' => 100 }
+        output = %w[281974 669488 217151 814708 SYSTEM 933987]
+        @verify.process_transactions(trans, line_num, address)
+      end
+    end
+  end
+
   # Test for read method
   def test_read_file
     begin
