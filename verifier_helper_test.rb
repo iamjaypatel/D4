@@ -62,7 +62,8 @@ class VerifierTest < Minitest::Test
     coins = 10
     sender = 112_233
     address = ['445566']
-    assert_equal -10, @verify.withdraw(coins, sender, address)
+    output = -10
+    assert_equal output, @verify.withdraw(coins, sender, address)
   end
 
   # Check Withdrawal Method for non empty method
@@ -70,7 +71,8 @@ class VerifierTest < Minitest::Test
     coins = 10
     sender = 112_233
     address = { '445566' => 100 }
-    assert_equal -10, @verify.withdraw(coins, sender, address)
+    output = -10
+    assert_equal output, @verify.withdraw(coins, sender, address)
   end
 
   # Check Add Method for empty account
@@ -140,7 +142,8 @@ class VerifierTest < Minitest::Test
   # Test for check_hash
   def test_check_hash
     assert_raises SystemExit do
-      assert_output "Line 1: String '0|0|SYSTEM>281974(100)|1553188611.560418000' hash set to 6283, should be 1231\nBLOCKCHAIN INVALID" do
+      assert_output "Line 1: String '0|0|SYSTEM>281974(100)|1553188611.560418000'
+       hash set to 6283, should be 1231\nBLOCKCHAIN INVALID" do
         found_hash = 1231
         line = ['0', '0', 'SYSTEM>281974(100)', '1553188611.560418000', "6283\n"]
         line_num = 1
@@ -161,6 +164,7 @@ class VerifierTest < Minitest::Test
     trans = '281974>669488(12):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
     line_num = 0
     address =  { '281974' => 100 }
-    assert_equal %w[281974 669488 281974 669488 281974 217151 281974 814708 SYSTEM 933987], @verify.process_transactions(trans, line_num, address)
+    output = %w[281974 669488 281974 669488 281974 217151 281974 814708 SYSTEM 933987]
+    assert_equal output, @verify.process_transactions(trans, line_num, address)
   end
 end

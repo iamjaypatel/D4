@@ -14,14 +14,14 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-13T22:03:15-04:00">2019-04-13T22:03:15-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-13T22:13:44-04:00">2019-04-13T22:13:44-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">84.49%</span></span>
+    (<span class="covered_percent"><span class="yellow">84.74%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>2</b> files in total.
-    <b>187</b> relevant lines. 
-    <span class="green"><b>158</b> lines covered</span> and
+    <b>190</b> relevant lines. 
+    <span class="green"><b>161</b> lines covered</span> and
     <span class="red"><b>29</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -63,9 +63,9 @@
       <tr>
         <td class="strong"><a href="#7094195a08e6ec845f756a1685661425745ea732" class="src_link" title="verifier_helper_test.rb">verifier_helper_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>167</td>
-        <td>98</td>
-        <td>98</td>
+        <td>170</td>
+        <td>101</td>
+        <td>101</td>
         <td>0</td>
         <td>1.2</td>
       </tr>
@@ -697,13 +697,13 @@
         <li class="covered" data-hits="1" data-linenumber="100">
           <span class="hits">1</span>
           
-          <code class="ruby">    puts (&quot;Line #{line_num}: String &#39;#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}&#39;</code>
+          <code class="ruby">    puts &quot;Line #{line_num}: String &#39;#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="101">
           
           
-          <code class="ruby">      hash set to #{line[4]}, should be #{found_hash}\nBLOCKCHAIN INVALID&quot;)</code>
+          <code class="ruby">      hash set to #{line[4]}, should be #{found_hash}\nBLOCKCHAIN INVALID&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="102">
@@ -980,8 +980,8 @@
     <h3>verifier_helper_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>98</b> relevant lines. 
-      <span class="green"><b>98</b> lines covered</span> and
+      <b>101</b> relevant lines. 
+      <span class="green"><b>101</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1376,616 +1376,634 @@
         <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
-          <code class="ruby">    assert_equal -10, @verify.withdraw(coins, sender, address)</code>
+          <code class="ruby">    output = -10</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="covered" data-hits="1" data-linenumber="66">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    assert_equal output, @verify.withdraw(coins, sender, address)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="67">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="68">
           
           
-          <code class="ruby">  # Check Withdrawal Method for non empty method</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="69">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="69">
           
-          <code class="ruby">  def test_withdraw_non_empty_account</code>
+          
+          <code class="ruby">  # Check Withdrawal Method for non empty method</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="70">
           <span class="hits">1</span>
           
-          <code class="ruby">    coins = 10</code>
+          <code class="ruby">  def test_withdraw_non_empty_account</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="71">
           <span class="hits">1</span>
           
-          <code class="ruby">    sender = 112_233</code>
+          <code class="ruby">    coins = 10</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="72">
           <span class="hits">1</span>
           
-          <code class="ruby">    address = { &quot;445566&quot; =&gt; 100 }</code>
+          <code class="ruby">    sender = 112_233</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="73">
           <span class="hits">1</span>
           
-          <code class="ruby">    assert_equal -10, @verify.withdraw(coins, sender, address)</code>
+          <code class="ruby">    address = { &#39;445566&#39; =&gt; 100 }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="covered" data-hits="1" data-linenumber="74">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    output = -10</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="covered" data-hits="1" data-linenumber="75">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    assert_equal output, @verify.withdraw(coins, sender, address)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="76">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="77">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="78">
+          
+          
           <code class="ruby">  # Check Add Method for empty account</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="77">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_add_coins_empty_account</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="78">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    coins = 10</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="79">
           <span class="hits">1</span>
           
-          <code class="ruby">    receiver = 112_233</code>
+          <code class="ruby">  def test_add_coins_empty_account</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="80">
           <span class="hits">1</span>
           
-          <code class="ruby">    address = %w[445566]</code>
+          <code class="ruby">    coins = 10</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="81">
           <span class="hits">1</span>
           
+          <code class="ruby">    receiver = 112_233</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="82">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    address = %w[445566]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="83">
+          <span class="hits">1</span>
+          
           <code class="ruby">    assert_equal 10, @verify.add(coins, receiver, address)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="82">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="83">
-          
-          
-          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="84">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="85">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="86">
+          
+          
           <code class="ruby">  # Check Add Method for non empty account</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="85">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_add_coins_non_empty_account</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="86">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    coins = 10</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="87">
           <span class="hits">1</span>
           
-          <code class="ruby">    receiver = 112_233</code>
+          <code class="ruby">  def test_add_coins_non_empty_account</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="88">
           <span class="hits">1</span>
           
-          <code class="ruby">    address = { &quot;445566&quot; =&gt; 100 }</code>
+          <code class="ruby">    coins = 10</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="89">
           <span class="hits">1</span>
           
+          <code class="ruby">    receiver = 112_233</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="90">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    address = { &#39;445566&#39; =&gt; 100 }</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="91">
+          <span class="hits">1</span>
+          
           <code class="ruby">    assert_equal 10, @verify.add(coins, receiver, address)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="90">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="91">
-          
-          
-          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="92">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="93">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="94">
+          
+          
           <code class="ruby">  # Check Bad Previous Hash</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="93">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_check_bad_prev_hash</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="94">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_raises SystemExit do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="95">
           <span class="hits">1</span>
           
-          <code class="ruby">      assert_output &#39;Line 1: Previous hash was 1, should be 0\nBLOCKCHAIN INVALID&#39; do</code>
+          <code class="ruby">  def test_check_bad_prev_hash</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="96">
           <span class="hits">1</span>
           
-          <code class="ruby">        p_hash = &#39;0&#39;</code>
+          <code class="ruby">    assert_raises SystemExit do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="97">
           <span class="hits">1</span>
           
-          <code class="ruby">        line_num = &#39;1&#39;</code>
+          <code class="ruby">      assert_output &#39;Line 1: Previous hash was 1, should be 0\nBLOCKCHAIN INVALID&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="98">
           <span class="hits">1</span>
           
-          <code class="ruby">        block_p_hash = [&#39;1&#39;]</code>
+          <code class="ruby">        p_hash = &#39;0&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="99">
           <span class="hits">1</span>
           
-          <code class="ruby">        hash = &#39;1&#39;</code>
+          <code class="ruby">        line_num = &#39;1&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="100">
           <span class="hits">1</span>
           
-          <code class="ruby">        @verify.check_prev_hash(p_hash, block_p_hash, hash, line_num)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="101">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="102">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="103">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="104">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="105">
-          
-          
-          <code class="ruby">  # Check Good Previous Hash</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="106">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_check_good_prev_hash</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="107">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_raises SystemExit do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="108">
-          <span class="hits">1</span>
-          
-          <code class="ruby">      assert_output &#39;&#39; do</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="109">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        p_hash = &#39;1&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="110">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        line_num = &#39;1&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="111">
-          <span class="hits">1</span>
-          
           <code class="ruby">        block_p_hash = [&#39;1&#39;]</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="112">
+        <li class="covered" data-hits="1" data-linenumber="101">
           <span class="hits">1</span>
           
           <code class="ruby">        hash = &#39;1&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="113">
+        <li class="covered" data-hits="1" data-linenumber="102">
           <span class="hits">1</span>
           
           <code class="ruby">        @verify.check_prev_hash(p_hash, block_p_hash, hash, line_num)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="114">
+        <li class="never" data-hits="" data-linenumber="103">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="115">
+        <li class="never" data-hits="" data-linenumber="104">
           
           
           <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="105">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="106">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="107">
+          
+          
+          <code class="ruby">  # Check Good Previous Hash</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="108">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_check_good_prev_hash</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="109">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_raises SystemExit do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="110">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      assert_output &#39;&#39; do</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="111">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        p_hash = &#39;1&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="112">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        line_num = &#39;1&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="113">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        block_p_hash = [&#39;1&#39;]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="114">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        hash = &#39;1&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="115">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        @verify.check_prev_hash(p_hash, block_p_hash, hash, line_num)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="116">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="117">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="118">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="120">
+          
+          
           <code class="ruby">  # Test for good values check_time method</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="119">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_check_good_time</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="120">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_output &#39;&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="121">
           <span class="hits">1</span>
           
-          <code class="ruby">      time = &#39;1553188611.560418000&#39;</code>
+          <code class="ruby">  def test_check_good_time</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="122">
           <span class="hits">1</span>
           
-          <code class="ruby">      prev_time = &#39;0.0&#39;</code>
+          <code class="ruby">    assert_output &#39;&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="123">
           <span class="hits">1</span>
           
-          <code class="ruby">      line_num = 0</code>
+          <code class="ruby">      time = &#39;1553188611.560418000&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="124">
           <span class="hits">1</span>
           
+          <code class="ruby">      prev_time = &#39;0.0&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="125">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      line_num = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="126">
+          <span class="hits">1</span>
+          
           <code class="ruby">      @verify.check_time(time, prev_time, line_num)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="125">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="126">
-          
-          
-          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="127">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="128">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="129">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="130">
+          
+          
           <code class="ruby">  # Test for bad values check_time method</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="129">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_check_bad_time</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="130">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_raises SystemExit do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="131">
           <span class="hits">1</span>
           
-          <code class="ruby">      assert_output &#39;Line 0: Previous timestamp 1553188611.560418000 &gt;= new timestamp 0.0\nBLOCKCHAIN INVALID&#39; do</code>
+          <code class="ruby">  def test_check_bad_time</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="132">
           <span class="hits">1</span>
           
-          <code class="ruby">        time = &#39;0.0&#39;</code>
+          <code class="ruby">    assert_raises SystemExit do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="133">
           <span class="hits">1</span>
           
-          <code class="ruby">        prev_time = &#39;1553188611.560418000&#39;</code>
+          <code class="ruby">      assert_output &#39;Line 0: Previous timestamp 1553188611.560418000 &gt;= new timestamp 0.0\nBLOCKCHAIN INVALID&#39; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="134">
           <span class="hits">1</span>
           
-          <code class="ruby">        line_num = 0</code>
+          <code class="ruby">        time = &#39;0.0&#39;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="135">
           <span class="hits">1</span>
           
+          <code class="ruby">        prev_time = &#39;1553188611.560418000&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="136">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        line_num = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="137">
+          <span class="hits">1</span>
+          
           <code class="ruby">        @verify.check_time(time, prev_time, line_num)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="136">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="137">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="138">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="139">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="140">
           
           
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="141">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="142">
+          
+          
           <code class="ruby">  # Test for check_hash</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="141">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_check_hash</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="142">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_raises SystemExit do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="143">
           <span class="hits">1</span>
           
-          <code class="ruby">      assert_output &quot;Line 1: String &#39;0|0|SYSTEM&gt;281974(100)|1553188611.560418000&#39;</code>
+          <code class="ruby">  def test_check_hash</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="144">
+        <li class="covered" data-hits="1" data-linenumber="144">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        hash set to 6283, should be 1231\nBLOCKCHAIN INVALID&quot; do</code>
+          <code class="ruby">    assert_raises SystemExit do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="145">
           <span class="hits">1</span>
           
-          <code class="ruby">        found_hash = 1231</code>
+          <code class="ruby">      assert_output &quot;Line 1: String &#39;0|0|SYSTEM&gt;281974(100)|1553188611.560418000&#39;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="146">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="146">
           
-          <code class="ruby">        line = [&#39;0&#39;, &#39;0&#39;, &#39;SYSTEM&gt;281974(100)&#39;, &#39;1553188611.560418000&#39;, &quot;6283\n&quot;]</code>
+          
+          <code class="ruby">       hash set to 6283, should be 1231\nBLOCKCHAIN INVALID&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="147">
           <span class="hits">1</span>
           
-          <code class="ruby">        line_num = 1</code>
+          <code class="ruby">        found_hash = 1231</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="148">
           <span class="hits">1</span>
           
+          <code class="ruby">        line = [&#39;0&#39;, &#39;0&#39;, &#39;SYSTEM&gt;281974(100)&#39;, &#39;1553188611.560418000&#39;, &quot;6283\n&quot;]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="149">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        line_num = 1</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="150">
+          <span class="hits">1</span>
+          
           <code class="ruby">        @verify.check_hash(found_hash, line, line_num)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="149">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="150">
-          
-          
-          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="151">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="152">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="153">
           
           
-          <code class="ruby">  # Test calc_hash function</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="154">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_calc_hash</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="155">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    calc = {}</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="156">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    line = &#39;0|0|SYSTEM&gt;281974(100)|1553188611.560418000|6283&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="157">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_raises LocalJumpError, @verify.calc_hash(line, calc)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="158">
-          
-          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="159">
+        <li class="never" data-hits="" data-linenumber="154">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="155">
+          
+          
+          <code class="ruby">  # Test calc_hash function</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="156">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_calc_hash</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="157">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    calc = {}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="158">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    line = &#39;0|0|SYSTEM&gt;281974(100)|1553188611.560418000|6283&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="159">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_raises LocalJumpError, @verify.calc_hash(line, calc)</code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="160">
-          
-          
-          <code class="ruby">  # Test for process_transactions</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="161">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def test_process_trans</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="162">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    trans = &#39;281974&gt;669488(12):281974&gt;669488(17):281974&gt;217151(12):281974&gt;814708(5):SYSTEM&gt;933987(100)&#39;</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="163">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    line_num = 0</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="164">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    address =  { &#39;281974&#39; =&gt; 100 }</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="165">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    assert_equal %w[281974 669488 281974 669488 281974 217151 281974 814708 SYSTEM 933987], @verify.process_transactions(trans, line_num, address)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="166">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="167">
+        <li class="never" data-hits="" data-linenumber="161">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="162">
+          
+          
+          <code class="ruby">  # Test for process_transactions</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="163">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_process_trans</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="164">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    trans = &#39;281974&gt;669488(12):281974&gt;669488(17):281974&gt;217151(12):281974&gt;814708(5):SYSTEM&gt;933987(100)&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="165">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    line_num = 0</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="166">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    address =  { &#39;281974&#39; =&gt; 100 }</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="167">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    output = %w[281974 669488 281974 669488 281974 217151 281974 814708 SYSTEM 933987]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="168">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_equal output, @verify.process_transactions(trans, line_num, address)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="169">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="170">
           
           
           <code class="ruby">end</code>
