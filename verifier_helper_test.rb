@@ -146,7 +146,7 @@ class VerifierTest < Minitest::Test
   def test_check_good_time
     assert_output '' do
       time = '1553188611.560418000'
-      prev_time = '0.0'
+      prev_time = '1553188612.100418000'
       line_num = 0
       @verify.check_time(time, prev_time, line_num)
     end
@@ -155,8 +155,8 @@ class VerifierTest < Minitest::Test
   # Test for bad values check_time method
   def test_check_bad_time
     assert_raises SystemExit do
-      assert_output 'Line 0: Previous timestamp 1553188611.560418000 >= new timestamp 0.0\nBLOCKCHAIN INVALID' do
-        time = '0.0'
+      assert_output 'Line 0: Previous timestamp 1553188611.560418000 >= new timestamp 1553188611.100418000\nBLOCKCHAIN INVALID' do
+        time = '1553188611.100418000'
         prev_time = '1553188611.560418000'
         line_num = 0
         @verify.check_time(time, prev_time, line_num)
