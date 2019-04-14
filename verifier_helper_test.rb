@@ -6,20 +6,38 @@ class VerifierTest < Minitest::Test
     @verify = D4.new
   end
 
+  # Checks that nothing occurs if block is good
+  def test_check_good_block
+    line = ['0', '0', 'SYSTEM>569274(100)', '1553184699.650330000', '288d']
+    line_num = 1
+    assert_output(nil) { @verify.check_block(line, line_num) }
+  end
+
+  # Checks that error message is raised if block is bad
+  def test_check_bad_block
+    assert_raises SystemExit do
+      assert_output "Line 1: Invalid block, missing or extra element(s)\nBLOCKCHAIN INVALID" do
+        line = ['0', '0', 'SYSTEM>569274(100)', '1553184699.650330000', '288d', '']
+        line_num = 1
+        @verify.check_block(line, line_num)
+      end
+    end
+  end
+
   # Check Good Format
-  def test_check_good_format
+  def test_good_transaction_format
     input = '281974>669488'
     line_num = 1
-    assert_output(nil) { @verify.check_format(input, line_num) }
+    assert_output(nil) { @verify.check_transaction_format(input, line_num) }
   end
 
   # Check bad Format
-  def test_check_bad_format
+  def test_bad_transaction_format
     assert_raises SystemExit do
       assert_output "Line 1: Could not parse transactions list 281974669488\nBLOCKCHAIN INVALID" do
         input = '281974669488'
         line_num = 1
-        @verify.check_format(input, line_num)
+        @verify.check_transaction_format(input, line_num)
       end
     end
   end
@@ -117,15 +135,11 @@ class VerifierTest < Minitest::Test
 
   # Check Good Previous Hash
   def test_check_good_prev_hash
-    assert_raises SystemExit do
-      assert_output '' do
-        p_hash = '1'
-        line_num = '1'
-        block_p_hash = ['1']
-        hash = '1'
-        @verify.check_prev_hash(p_hash, block_p_hash, hash, line_num)
-      end
-    end
+    p_hash = '1'
+    line_num = '1'
+    block_p_hash = '1'
+    hash = '1'
+    assert_equal '1', @verify.check_prev_hash(p_hash, block_p_hash, hash, line_num)
   end
 
   # Test for good values check_time method
@@ -163,6 +177,18 @@ class VerifierTest < Minitest::Test
     end
   end
 
+  # Test for check_negative_balance
+  def test_negative_balance
+    assert_raises SystemExit do
+      assert_output "Line 1: Invalid block, address 123456 has -10 billcoins!\nBLOCKCHAIN INVALID" do
+        uniq_addr = ['123456']
+        addr = { '123456' => -10 }
+        line_num = 1
+        @verify.check_negative_balance(uniq_addr, addr, line_num)
+      end
+    end
+  end
+
   # Test calc_hash function
   def test_calc_hash
     calc = {}
@@ -175,28 +201,22 @@ class VerifierTest < Minitest::Test
     trans = '281974>669488(12):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
     line_num = 0
     address =  { '281974' => 100 }
-    output = %w[281974 669488 281974 669488 281974 217151 281974 814708 SYSTEM 933987]
+    output = %w[281974 669488 217151 814708 SYSTEM 933987]
     assert_equal output, @verify.process_transactions(trans, line_num, address)
   end
 
   # Test for read method
-  def test_read_method
+  def test_read_file
     begin
       File.open('test.txt', 'w') { |f| f.write('0|0|SYSTEM>569274(100)|1553184699.650330000|288d') }
     end
-    assert_equal [["569274", 100]], @verify.read('test.txt')
+    assert_equal [['569274', 100]], @verify.read('test.txt')
   end
 
   # Test for read method- bad file
-  def test_read_bad_method
+  def test_read_bad_file
     assert_raises SystemExit do
-      begin
-        File.open('test1.txt', 'w') { |f| f.write('0|0|111111>569274(100)|1553184699.650330000|288d') }
-      end
-      output = "Line 0: String '0|0|111111>569274(100)|1553184699.650330000'
-        hash set to 288d, should be 4363\nBLOCKCHAIN INVALID"
-      assert_equal output, @verify.read('test.txt')
+      assert_output 'File does not exist', @verify.read('instructions/sample_test.txt')
     end
-
   end
 end

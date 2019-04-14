@@ -1,5 +1,13 @@
 # Class D4, Contains all the helper methods for verifier.rb
 class D4
+  # Checks that block is valid
+  def check_block(line, line_num)
+    return if line.size == 5
+
+    puts "Line #{line_num}: Invalid block, missing or extra element(s)\nBLOCKCHAIN INVALID"
+    exit 1
+  end
+
   # Checks if block number is valid
   def check_num(block_num, line_num)
     return if block_num.to_i == line_num
@@ -41,7 +49,8 @@ class D4
     end
   end
 
-  def check_format(transactions, line_num)
+  # Checks that transactions are in the correct format
+  def check_transaction_format(transactions, line_num)
     return if transactions.include?('>')
 
     puts("Line #{line_num}: Could not parse transactions list '#{transactions}'\nBLOCKCHAIN INVALID")
@@ -60,7 +69,7 @@ class D4
       withdraw(billcoins, address_pair[0], addresses) if address_pair[0] != 'SYSTEM'
       add(billcoins, address_pair[1], addresses)
     end
-    block_addresses
+    block_addresses.uniq
   end
 
   # Subtracts billcoins from the sender
@@ -82,7 +91,6 @@ class D4
   end
 
   # Calculates the hash for the current block
-  # Memoization?
   def calc_hash(line, calculations)
     string_to_hash = "#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}".unpack('U*')
     sum = 0
@@ -102,9 +110,23 @@ class D4
     exit 1
   end
 
+  def check_negative_balance(uniq_addresses, addresses, line_num)
+    uniq_addresses.each do |address|
+      if address != 'SYSTEM' && (addresses[address]).negative? # If an address has negative billcoins
+        puts "Line #{line_num}: Invalid block,
+          address #{address} has #{addresses[address]} billcoins!\nBLOCKCHAIN INVALID"
+        exit 1
+      end
+    end
+  end
+
   # Reads through the file and extracts the information from each line
   # Checks for any invalidity, then prints out the addresses and billcoins
   def read(file)
+    if !File.file?(file)
+      puts 'File not found'
+      exit 1
+    end
     line_num = 0
     prev_hash = '0'
     prev_time = '0.0'
@@ -112,6 +134,7 @@ class D4
     calculations = {}
     File.foreach(file) do |line|
       line = line.split('|') # Split the line using the pipes
+      check_block(line, line_num)
       block_num = line[0] # Block number
       block_prev_hash = line[1] # Hash of previous block
       transactions = line[2] # Sequence of transactions
@@ -120,20 +143,14 @@ class D4
       found_hash = calc_hash(line, calculations)
 
       check_num(block_num, line_num)
-      check_format(transactions, line_num)
+      check_transaction_format(transactions, line_num)
       check_hash(found_hash, line, line_num)
       prev_hash = check_prev_hash(prev_hash, block_prev_hash, hash, line_num)
       prev_time = check_time(timestamp, prev_time, line_num)
 
       # Get unique addresses w/ transactions
-      uniq_addresses = process_transactions(transactions, line_num, addresses).uniq
-      uniq_addresses.each do |address|
-        if address != 'SYSTEM' && (addresses[address]).negative? # If an address has negative billcoins
-          puts "Line #{line_num}: Invalid block,
-            address #{address} has #{addresses[address]} billcoins!\nBLOCKCHAIN INVALID"
-          exit 1
-        end
-      end
+      uniq_addresses = process_transactions(transactions, line_num, addresses)
+      check_negative_balance(uniq_addresses, addresses, line_num)
       line_num += 1
     end
     addresses = addresses.delete_if { |_, billcoins| billcoins.zero? } # Remove all addresses with 0 billcoin
