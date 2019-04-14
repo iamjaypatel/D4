@@ -191,7 +191,7 @@ class VerifierTest < Minitest::Test
   def test_read_bad_method
     assert_raises SystemExit do
       begin
-        File.open('test.txt', 'w') { |f| f.write('0|0|111111>569274(100)|1553184699.650330000|288d') }
+        File.open('test1.txt', 'w') { |f| f.write('0|0|111111>569274(100)|1553184699.650330000|288d') }
       end
       output = "Line 0: String '0|0|111111>569274(100)|1553184699.650330000'
         hash set to 288d, should be 4363\nBLOCKCHAIN INVALID"
