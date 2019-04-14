@@ -35,6 +35,17 @@ class VerifierTest < Minitest::Test
     end
   end
 
+  # Check First Bad Address- non number
+  def test_check_first_bad_address_non_num
+    assert_raises SystemExit do
+      assert_output 'Line 1: Invalid address 1ab4c67\nBLOCKCHAIN INVALID' do
+        add = %w[1ab4c67 123456]
+        line_num = 1
+        @verify.check_addresses(add, line_num)
+      end
+    end
+  end
+
   # Check Second Bad Address
   def test_check_second_bad_address
     assert_raises SystemExit do
@@ -166,5 +177,19 @@ class VerifierTest < Minitest::Test
     address =  { '281974' => 100 }
     output = %w[281974 669488 281974 669488 281974 217151 281974 814708 SYSTEM 933987]
     assert_equal output, @verify.process_transactions(trans, line_num, address)
+  end
+
+  # Test for read method
+  def test_read_method
+    assert_raises SystemExit do
+      assert_output true, @verify.read('instructions/sample.txt')
+    end
+  end
+
+  # Test for read method- bad file
+  def test_read_bad_method
+    assert_raises SystemExit do
+      assert_output true, @verify.read('instructions/sample_test.txt')
+    end
   end
 end

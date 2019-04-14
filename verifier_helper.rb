@@ -130,8 +130,7 @@ class D4
       uniq_addresses.each do |address|
         if address != 'SYSTEM' && (addresses[address]).negative? # If an address has negative billcoins
           puts "Line #{line_num}: Invalid block,
-            address #{address} has #{addresses[address]} billcoins!"
-          puts 'BLOCKCHAIN INVALID'
+            address #{address} has #{addresses[address]} billcoins!\nBLOCKCHAIN INVALID"
           exit 1
         end
       end
