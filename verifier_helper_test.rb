@@ -181,15 +181,22 @@ class VerifierTest < Minitest::Test
 
   # Test for read method
   def test_read_method
-    assert_raises SystemExit do
-      assert_output true, @verify.read('instructions/sample.txt')
+    begin
+      File.open('test.txt', 'w') { |f| f.write('0|0|SYSTEM>569274(100)|1553184699.650330000|288d') }
     end
+    assert_equal [["569274", 100]], @verify.read('test.txt')
   end
 
   # Test for read method- bad file
   def test_read_bad_method
     assert_raises SystemExit do
-      assert_output true, @verify.read('instructions/sample_test.txt')
+      begin
+        File.open('test.txt', 'w') { |f| f.write('0|0|111111>569274(100)|1553184699.650330000|288d') }
+      end
+      output = "Line 0: String '0|0|111111>569274(100)|1553184699.650330000'
+        hash set to 288d, should be 4363\nBLOCKCHAIN INVALID"
+      assert_equal output, @verify.read('test.txt')
     end
+
   end
 end
