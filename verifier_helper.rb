@@ -98,8 +98,7 @@ class D4
     return if found_hash == line[4].delete("\n")
 
     puts "Line #{line_num}: String '#{line[0]}|#{line[1]}|#{line[2]}|#{line[3]}'
-      hash set to #{line[4]}, should be #{found_hash}"
-    puts 'BLOCKCHAIN INVALID'
+      hash set to #{line[4]}, should be #{found_hash}\nBLOCKCHAIN INVALID"
     exit 1
   end
 
