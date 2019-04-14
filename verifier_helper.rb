@@ -128,7 +128,7 @@ class D4
   # Reads through the file and extracts the information from each line
   # Checks for any invalidity, then prints out the addresses and billcoins
   def read(file)
-    if !File.file?(file)
+    unless File.file?(file)
       puts 'File not found'
       exit 1
     end

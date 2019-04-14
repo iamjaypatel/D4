@@ -155,7 +155,8 @@ class VerifierTest < Minitest::Test
   # Test for bad values check_time method
   def test_check_bad_time
     assert_raises SystemExit do
-      assert_output 'Line 0: Previous timestamp 1553188611.560418000 >= new timestamp 1553188611.100418000\nBLOCKCHAIN INVALID' do
+      assert_output 'Line 0: Previous timestamp 1553188611.560418000 >= new
+      timestamp 1553188611.100418000\nBLOCKCHAIN INVALID' do
         time = '1553188611.100418000'
         prev_time = '1553188611.560418000'
         line_num = 0
@@ -212,7 +213,6 @@ class VerifierTest < Minitest::Test
         trans = '281974>669488(foobar):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
         line_num = 0
         address =  { '281974' => 100 }
-        output = %w[281974 669488 217151 814708 SYSTEM 933987]
         @verify.process_transactions(trans, line_num, address)
       end
     end
@@ -225,7 +225,6 @@ class VerifierTest < Minitest::Test
         trans = '281974>669488(-12):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
         line_num = 0
         address =  { '281974' => 100 }
-        output = %w[281974 669488 217151 814708 SYSTEM 933987]
         @verify.process_transactions(trans, line_num, address)
       end
     end
