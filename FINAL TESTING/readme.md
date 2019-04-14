@@ -1,4 +1,11 @@
-FINAL TESTING TIMES
+# FINAL TESTING TIMES
+
+  - Flamegraph Info:
+    - 100.txt: final_100.html
+    - 1000.txt: final_1000.html
+    - sample.txt: final_sample.txt
+    - long.txt: final_long.txt
+
 
 | File Name               | Real     | User     | Sys      |
 |-------------------------|----------|----------|----------|
@@ -17,3 +24,9 @@ FINAL TESTING TIMES
 | long.txt                | 0m2.229s | 0m2.037s | 0m0.157s |
 |                         | 0m2.223s | 0m2.031s | 0m0.159s |
 |                         | 0m2.241s | 0m2.042s | 0m0.165s |
+
+- Flamegraph Images
+
+![](final_100.png?raw=true)
+![](final_1000.png?raw=true)
+![](final_sample.png?raw=true)
