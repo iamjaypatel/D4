@@ -208,7 +208,7 @@ class VerifierTest < Minitest::Test
   # Test for transaction involving non-integer amt of billcoins
   def test_non_int_trans
     assert_raises SystemExit do
-      assert_output 'Line 0: Invalid amount of billcoins: (foobar)\nBLOCKCHAIN INVALID' do 
+      assert_output 'Line 0: Invalid amount of billcoins: (foobar)\nBLOCKCHAIN INVALID' do
         trans = '281974>669488(foobar):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
         line_num = 0
         address =  { '281974' => 100 }
@@ -221,7 +221,7 @@ class VerifierTest < Minitest::Test
   # Test for transaction involving negative amt of billcoins
   def test_negative_trans
     assert_raises SystemExit do
-      assert_output 'Line 0: Invalid amount of billcoins: (-12)\nBLOCKCHAIN INVALID' do 
+      assert_output 'Line 0: Invalid amount of billcoins: (-12)\nBLOCKCHAIN INVALID' do
         trans = '281974>669488(-12):281974>669488(17):281974>217151(12):281974>814708(5):SYSTEM>933987(100)'
         line_num = 0
         address =  { '281974' => 100 }
@@ -242,7 +242,7 @@ class VerifierTest < Minitest::Test
   # Test for read method- bad file
   def test_read_bad_file
     assert_raises SystemExit do
-      assert_output 'File does not exist', @verify.read('instructions/sample_test.txt')
+      assert_output 'File does not exist', @verify.read('sample_test.txt')
     end
   end
 end
